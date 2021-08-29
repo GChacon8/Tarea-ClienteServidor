@@ -4,7 +4,11 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
+/**
+ * Clase Cliente que contiene la logica para solicitar monto por medio de una interfaz
+ * Esta clase utiliza la clase Mensaje para la comunicacion de los datos.
+ * @author Gabriel Chacon Alfaro
+ */
 public class Cliente implements ActionListener{  
     JTextField int_1;
     JTextField int_2;
@@ -14,6 +18,7 @@ public class Cliente implements ActionListener{
 
     Cliente() {  
         JFrame frame = new JFrame("Interfaz de Cliente");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         area = new JTextArea();
         area.setBounds(20,50,340,130);
         int_1=new JTextField();
@@ -34,7 +39,11 @@ public class Cliente implements ActionListener{
         frame.setLayout(null);  
         frame.setVisible(true);
     }  
-
+    /**
+     * Este metodo se ejecuta al presionar el boton de la interfaz.
+     * Obtiene los valores enteros ingresados y los manda al server utilizando la clase Mensaje.
+     * Al mismo tiempo recibe los datos mandados de vuelta por el server y los muestra en la interfaz.
+     */
     public void actionPerformed(ActionEvent e){
         String valor = int_1.getText();  
         String porcentaje = int_2.getText();  
@@ -61,6 +70,11 @@ public class Cliente implements ActionListener{
             System.out.println("Error Cliente");
         }
     }  
+    /**
+     * Este metodo main se encarga de instanciar una clase Cliente
+     * 
+     * @param args - No recibe parametros (vacio)
+     */
     public static void main(String[] args) {  
         new Cliente();
     }  

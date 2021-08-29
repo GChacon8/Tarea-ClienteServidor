@@ -3,8 +3,16 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+/**
+ * Clase Servidor que contiene la logica para la comunicacion con el cliente.
+ * @author Gabriel Chacon Alfaro
+ */
 public class Servidor {
+    /**
+     * Clase del servidor que espera una interaccion en su puerto con algun cliente.
+     * Devuelve el monto solicitado por el cliente usando la clase Mensaje.
+     * @param args - no recibe parametros (vacio)
+     */
     public static void main(String[] args) {
         ServerSocket servidor = null;
         Socket sc = null;
