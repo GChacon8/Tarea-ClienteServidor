@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Servidor {
     public static void main(String[] args) {
-      
         ServerSocket servidor = null;
         Socket sc = null;
         DataInputStream in;
@@ -22,9 +21,12 @@ public class Server {
                 System.out.println("Cliente conectado");
                 in = new DataInputStream(sc.getInputStream());
                 out = new DataOutputStream(sc.getOutputStream());   
-                int mensaje = in.readInt(); 
-                System.out.println(mensaje);
-                out.writeInt(0);
+                String strDelCliente = in.readUTF(); 
+                System.out.println("Solicitud recibida: " + strDelCliente);
+                Mensaje msgDelCliente = Mensaje.fromString(strDelCliente);
+                Mensaje respuesta = msgDelCliente.calculate();
+                out.writeUTF(respuesta.toString());
+                System.out.println("Respuesta enviada: " + respuesta.toString());
                 sc.close();
                 System.out.println("Cliente desconectado");
             }
@@ -32,6 +34,5 @@ public class Server {
         catch (IOException ex) {
             System.out.println("Error Server");
         }
-    } 
-        
+    }
 }
